@@ -1,4 +1,4 @@
-# Kodiak.Azure.WebHostExtensions
+# Kodiak.Azure.WebHostExtension
 
 This extension simplifies how to use the Azure Key Vault in a .NET Core web application at startup time.
 
