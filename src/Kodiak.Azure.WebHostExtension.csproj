@@ -7,8 +7,8 @@
     <NeutralLanguage>en-GB</NeutralLanguage>
     <Company />
     <Copyright>Jeremy Lindsay, 2018</Copyright>
-    <RepositoryUrl>https://github.com/jeremylindsayni/Kodiak.Azure.WebHostExtensions</RepositoryUrl>
-    <PackageLicenseUrl>https://github.com/jeremylindsayni/Kodiak.Azure.WebHostExtensions/blob/master/LICENSE</PackageLicenseUrl>
+    <RepositoryUrl>https://github.com/jeremylindsayni/Kodiak.Azure.WebHostExtension</RepositoryUrl>
+    <PackageLicenseUrl>https://github.com/jeremylindsayni/Kodiak.Azure.WebHostExtension/blob/master/LICENSE</PackageLicenseUrl>
     <Version>0.0.1-alpha</Version>
     <Description>An extension method to simplify using the Azure Key Vault in a .NET Core 2 application - adds secrets to the application configuration.</Description>
   </PropertyGroup>
