@@ -19,7 +19,7 @@ namespace Kodiak.Azure.WebHostExtension
         public static IWebHostBuilder AddAzureKeyVaultSecretsToConfiguration(this IWebHostBuilder webHostBuilder,
             string keyVaultEndpoint)
         {
-            if (!IsUriValid(keyVaultEndpoint)) throw new UriFormatException("This is not a valid secure vault uri");
+            if (!IsUriValid(keyVaultEndpoint)) throw new UriFormatException("This is not a valid secure vault uri.");
 
             webHostBuilder.ConfigureAppConfiguration((ctx, builder) =>
             {
@@ -48,10 +48,10 @@ namespace Kodiak.Azure.WebHostExtension
         {
             var isValidUri = Uri.TryCreate(uri, UriKind.Absolute, out var validatedUri);
 
-            if (!isValidUri) throw new UriFormatException($"'{uri}' is not a valid uri");
+            if (!isValidUri) throw new UriFormatException($"'{uri}' is not a valid uri.");
 
             if (validatedUri.Scheme != Uri.UriSchemeHttps)
-                throw new UriFormatException($"'{uri}' does not have HTTP security");
+                throw new UriFormatException($"'{uri}' does not have Transport Layer Security (i.e. it is not https).");
 
             return true;
         }
