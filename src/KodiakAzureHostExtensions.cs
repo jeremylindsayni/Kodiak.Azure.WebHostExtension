@@ -1,38 +1,35 @@
-﻿using System;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.Azure.KeyVault;
+﻿using Microsoft.Azure.KeyVault;
 using Microsoft.Azure.Services.AppAuthentication;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Configuration.AzureKeyVault;
+using Microsoft.Extensions.Hosting;
+using System;
 
-namespace Kodiak.Azure.WebHostExtension
+namespace Kodiak.Azure.HostExtension
 {
-    public static class KodiakAzureWebHostExtensions
+    public static class KodiakAzureHostExtensions
     {
         /// <summary>
         ///     Adds the azure key vault secrets to configuration.
         /// </summary>
-        /// <param name="webHostBuilder">The web host builder.</param>
+        /// <param name="hostBuilder">The host builder.</param>
         /// <param name="keyVaultEndpoint">The key vault endpoint.</param>
         /// <returns></returns>
         /// <exception cref="UriFormatException">This is not a valid secure vault uri</exception>
-        public static IWebHostBuilder AddAzureKeyVaultSecretsToConfiguration(this IWebHostBuilder webHostBuilder,
-            string keyVaultEndpoint)
+        public static IHostBuilder AddAzureKeyVaultSecretsToConfiguration(this IHostBuilder hostBuilder, string keyVaultEndpoint)
         {
             if (!IsUriValid(keyVaultEndpoint)) throw new UriFormatException("This is not a valid secure vault uri.");
-
-            webHostBuilder.ConfigureAppConfiguration((ctx, builder) =>
+            
+            hostBuilder.ConfigureAppConfiguration((ctx, builder) =>
             {
                 var azureServiceTokenProvider = new AzureServiceTokenProvider();
-
                 var keyVaultClient =
                     new KeyVaultClient(
                         new KeyVaultClient.AuthenticationCallback(azureServiceTokenProvider.KeyVaultTokenCallback));
-
                 builder.AddAzureKeyVault(keyVaultEndpoint, keyVaultClient, new DefaultKeyVaultSecretManager());
             });
 
-            return webHostBuilder;
+            return hostBuilder;
         }
 
         /// <summary>
